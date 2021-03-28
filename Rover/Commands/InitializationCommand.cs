@@ -9,10 +9,10 @@ namespace Rover.Commands
         private IRover _rover;
         private (PlateauSize PlateauSize, CoordinatePoint InitialCoordinates, Vector<short> Facing) _initParams;
 
-        public InitializationCommand(IRover rover, string message)
+        public InitializationCommand(IRover rover, PlateauSize plateauSize, string message)
         {
             _rover = rover;
-            ParseInitializationMessage(message);
+            ParseInitializationMessage(plateauSize, message);
         }
 
         public CommandResultDto Result { get; private set; }
@@ -29,10 +29,7 @@ namespace Rover.Commands
             CoordinatePoint coordinates;
             Vector<short> direction = null;
 
-            var subMessages = message.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-
-            var plateauSizeSubsections = subMessages[0].Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-            var roverParams = subMessages[1].Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            var roverParams = message.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
             if (uint.TryParse(plateauSizeSubsections[0], out uint byLatitude)
                 && uint.TryParse(plateauSizeSubsections[1], out uint byLongtitude))
