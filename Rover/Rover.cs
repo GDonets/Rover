@@ -39,19 +39,14 @@ namespace Rover
             _roverDirection = facingDirection;
         }
 
-        public bool TryTurn(char direction)
+        public void TurnLeft()
         {
-            switch (direction)
-            {
-                case 'L':
-                    _roverDirection = DirectionTransformations.TurnLeft * _roverDirection;
-                    return true;
-                case 'R':
-                    _roverDirection = DirectionTransformations.TurnRight * _roverDirection;
-                    return true;
-                default:
-                    return false;
-            }
+            _roverDirection = DirectionTransformations.TurnLeft * _roverDirection;
+        }
+
+        public void TurnRight() 
+        {
+            _roverDirection = DirectionTransformations.TurnRight * _roverDirection;
         }
 
         public RoverMovementResult TryMove()

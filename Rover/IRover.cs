@@ -10,6 +10,7 @@ namespace Rover
 
         void Initialize(PlateauSize plateauSize, CoordinatePoint roverPosition, Vector<short> facingDirection);
         RoverMovementResult TryMove();
-        bool TryTurn(char direction);
+        public void TurnLeft();
+        public void TurnRight();
     }
 }
